@@ -1,0 +1,9 @@
+int enqueue(int data)      
+   if(isfull())
+      return 0;
+   
+   rear = rear + 1;
+   queue[rear] = data;
+   
+   return 1;
+end procedure
