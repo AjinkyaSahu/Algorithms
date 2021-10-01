@@ -1,2 +1,2 @@
 # Algorithms
-Repo for Hacktober Fest 2021
+Repository for Hacktober Fest 2021
