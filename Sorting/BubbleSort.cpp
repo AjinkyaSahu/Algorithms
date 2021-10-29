@@ -1,67 +1,74 @@
-#include <iostream>
+#include<bits/stdc++.h>
 using namespace std;
-class Sort
-{
-public:
-    int n, arr[];
-    void read_data();
-    void swap(int *x, int *y);
-    void bubbleSort();
-    void display_data();
-};
-void Sort ::read_data()
-{
-    cout << "Enter the size of the array : " << endl;
-    cin >> n;
-    cout << "Enter the array : " << endl;
-    for (int i = 0; i < n; i++)
-    {
-        cin >> arr[i];
-    }
+void swapping(int &a, int &b) {      
+   int temp;
+   temp = a;
+   a = b;
+   b = temp;
 }
-void Sort ::swap(int *x, int *y)
-{
-    int temp = *x;
-    *x = *y;
-    *y = temp;
-}
-void Sort ::bubbleSort()
-{
-    bool flag;
-    for (int i = 0; i < n - 1; i++)
-    {
-        flag = false;
-        for (int j = 0; j < n - 1 - i; j++)
-        {
-            if (arr[j] > arr[j + 1])
-            {
-                swap(&arr[j], &arr[j + 1]);
-                flag = true;
-            }
-        }
 
-        if (flag == false)
-        {
-            break;
-        }
-    }
+void display(int array[], int size) {
+   for(int i = 0; i<size; i++)
+      cout << array[i] << " ";
+   cout << endl;
 }
-void Sort ::display_data()
-{
-    for (int i = 0; i < n; i++)
-    {
-        cout << arr[i] << " ";
-    }
+
+void bubbleSort(int array[], int size) {
+    cout<<"every iteration"<<endl;
+   for(int i = 0; i<size; i++) {
+      int swaps = 0;    
+      for(int j = 0; j<size-i-1; j++) {
+         if(array[j] > array[j+1]) {       
+            swapping(array[j], array[j+1]);
+            swaps = 1;    
+         }
+         
+      }
+     
+         display(array, size);
+      if(!swaps)
+         break;       
+   }
 }
-int main()
-{
-    Sort array;
-    array.read_data();
-    array.bubbleSort();
-    cout << "The sorted array is : " << endl;
-    array.display_data();
-    return 0;
+int main() {
+   int n;
+    clock_t time_req;
+
+         time_req = clock();
+   cout << "Enter the number of elements: ";
+   cin >> n;
+   int arr[n];     
+   cout << "Enter elements:" << endl;
+   for(int i = 0; i<n; i++) {
+      cin >> arr[i];
+   }
+   cout << "Array before Sorting: ";
+   display(arr, n);
+   bubbleSort(arr, n);
+   cout << "Array after Sorting: ";
+   display(arr, n);
+   
+      time_req = clock()- time_req;
+    cout << "Processor time taken for sorting: "
+        << (float)time_req/CLOCKS_PER_SEC << " seconds" << endl;
 }
+
+
+// Enter the number of elements: 5
+// Enter elements:
+// 12 45 7 2 0  
+// Array before Sorting: 12 45 7 2 0 
+// every iteration
+// 12 7 2 0 45 
+// 7 2 0 12 45 
+// 2 0 7 12 45
+// 0 2 7 12 45
+// 0 2 7 12 45
+// Array after Sorting: 0 2 7 12 45
+// Processor time taken for sorting: 14.508 seconds
+
+
+
 
 // Time Complexity
 // Best  -----> Ω(n)
